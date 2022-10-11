@@ -14,19 +14,19 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class EmployeeDTO {
 
-    @ApiModelProperty(value = "Names", dataType = "String", example = "William")
+    @ApiModelProperty(value = "Names", dataType = "String", example = "Juan")
     @NotNull(message = "Los nombres son obligatorios")
     private String names;
 
-    @ApiModelProperty(value = "Last Names", dataType = "String", example = "Rubiano")
+    @ApiModelProperty(value = "Last Names", dataType = "String", example = "Figueroa")
     @NotNull(message = "Los apellidos son obligatorios")
     private String lastName;
 
-    @ApiModelProperty(value = "Document Type", dataType = "String")
+    @ApiModelProperty(value = "Document Type", dataType = "String", example = "Cedula")
     @NotNull(message = "El tipo de documento es obligatorio")
     private DocumentType documentType;
 
-    @ApiModelProperty(value = "Document number", dataType = "String", example = "1073")
+    @ApiModelProperty(value = "Document number", dataType = "String", example = "1075")
     @NotNull(message = "El número de documento es obligatorio")
     private String documentNumber;
 

@@ -11,9 +11,17 @@ spring:
   jackson:
     default-property-inclusion: non_null
   datasource:
-    url: jdbc:postgresql://localhost:5432/prueba-parameta
-    username: postgres
-    password: root
+    url: jdbc:mysql://localhost:3306/prueba-parameta?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
 server:
   port: 8095
 

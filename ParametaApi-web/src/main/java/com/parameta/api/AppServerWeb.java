@@ -7,15 +7,15 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
-public class AppServer extends SpringBootServletInitializer {
+public class AppServerWeb extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(AppServer.class);
+        return application.sources(AppServerWeb.class);
     }
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(AppServer.class, args);
+        ApplicationContext applicationContext = SpringApplication.run(AppServerWeb.class, args);
     }
 }
 

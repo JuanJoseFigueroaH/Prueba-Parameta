@@ -42,7 +42,7 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
         return new ApiInfoBuilder()
                 .title("ParametaApi")
                 .description("ParametaApi")
-                .contact(new Contact("William Rubiano", "https://www.linkedin.com/in/wrubianom12/", "wrubianom1@gmail.com"))
+                .contact(new Contact("Juan José Figueroa", "https://www.linkedin.com/in/juan-jos%C3%A9-figueroa-hurtatis-01038514a/", "juanjosefigueroahurtatis@gmail.com"))
                 .version("1.0")
                 .license("Apache License Version 2.0")
                 .build();
@@ -62,7 +62,6 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
-
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -71,7 +70,6 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
                 .allowedHeaders("Content-Type", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Authorization")
                 .maxAge(3600);
     }
-
 
     private Predicate<String> appPaths() {
         return regex("/.*");
@@ -87,5 +85,4 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
         converters.add(converter);
         addDefaultHttpMessageConverters(converters);
     }
-
 }
