@@ -37,8 +37,10 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "resultCode",
-    "resultMsg"
+        "resultCode",
+        "resultMsg",
+        "resultCompany",
+        "resultBirthday"
 })
 @XmlRootElement(name = "EmployeeResponse")
 public class EmployeeResponse {
@@ -47,44 +49,39 @@ public class EmployeeResponse {
     @XmlElement(required = true)
     protected String resultMsg;
 
-    /**
-     * Obtiene el valor de la propiedad resultCode.
-     * 
-     */
+    protected String resultCompany;
+
+    protected String resultBirthday;
+
     public int getResultCode() {
         return resultCode;
     }
 
-    /**
-     * Define el valor de la propiedad resultCode.
-     * 
-     */
     public void setResultCode(int value) {
         this.resultCode = value;
     }
 
-    /**
-     * Obtiene el valor de la propiedad resultMsg.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getResultMsg() {
         return resultMsg;
     }
 
-    /**
-     * Define el valor de la propiedad resultMsg.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setResultMsg(String value) {
         this.resultMsg = value;
     }
 
+    public String getResultCompany() {
+        return resultCompany;
+    }
+
+    public void setResultCompany(String resultCompany) {
+        this.resultCompany = resultCompany;
+    }
+
+    public String getResultBirthday() {
+        return resultBirthday;
+    }
+
+    public void setResultBirthday(String resultBirthday) {
+        this.resultBirthday = resultBirthday;
+    }
 }

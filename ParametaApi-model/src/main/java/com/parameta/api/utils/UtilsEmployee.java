@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class UtilsEmployee {
 
-    private static final String DATE_FORMAT = "dd-MM-yyyy";
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final int LIMIT_AGE = 18;
 
     public static boolean isValidDate(String dateStr) {

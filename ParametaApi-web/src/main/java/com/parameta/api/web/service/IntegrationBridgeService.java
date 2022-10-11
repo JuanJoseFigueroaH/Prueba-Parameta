@@ -35,13 +35,15 @@ public class IntegrationBridgeService implements IIntegrationBridgeService {
         this.soapAdapterConnector = soapAdapterConnector;
     }
 
+    private EmployeeResponse response;
+
 
     /**
      * @param employeeDTO
      * @throws ParametaAppException
      */
     @Override
-    public void createEmployee(EmployeeDTO employeeDTO) throws ParametaAppException {
+    public EmployeeResponse createEmployee(EmployeeDTO employeeDTO) throws ParametaAppException {
         if (employeeDTO != null) {
             if (!UtilsEmployee.isValidDate(employeeDTO.getDateOfBirth())) {
                 log.debug("validation error : fecha de nacimiento no valida");
@@ -71,13 +73,14 @@ public class IntegrationBridgeService implements IIntegrationBridgeService {
             request.setPositionRoleType(employeeDTO.getPositionRoleType().getType());
             request.setSalary(employeeDTO.getSalary());
             try {
-                EmployeeResponse response = (EmployeeResponse) this.soapAdapterConnector.callWebService(this.endpointEmployeeCreate, request);
+                response = (EmployeeResponse) this.soapAdapterConnector.callWebService(this.endpointEmployeeCreate, request);
                 if (response.getResultCode() == 2) {
                     // codigo de error en persistencia del empleado
                     throw new ParametaAppException(EmployeeConstants.APP_ERROR_CODE_CREATE_EMPLOYEE_CALL_ENDPOINT_EMP,
                             EmployeeConstants.APP_ERROR_MSG_CREATE_EMPLOYEE_CALL_ENDPOINT_EMP, HttpStatus.INTERNAL_SERVER_ERROR.value());
                 }
             } catch (Exception e) {
+                System.out.print(e.getMessage());
                 log.error("Se presento un error al llamar al endpoint WS");
                 throw new ParametaAppException(EmployeeConstants.APP_ERROR_CODE_CREATE_EMPLOYEE_CALL_ENDPOINT_EMP,
                         EmployeeConstants.APP_ERROR_MSG_CREATE_EMPLOYEE_CALL_ENDPOINT_EMP, HttpStatus.INTERNAL_SERVER_ERROR.value());
@@ -86,7 +89,7 @@ public class IntegrationBridgeService implements IIntegrationBridgeService {
             throw new ParametaAppException(EmployeeConstants.APP_ERROR_CODE_CREATE_EMPLOYEE,
                     EmployeeConstants.APP_ERROR_MSG_CREATE_EMPLOYEE, HttpStatus.BAD_REQUEST.value());
         }
+
+        return response;
     }
-
-
 }

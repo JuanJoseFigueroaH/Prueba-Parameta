@@ -1,5 +1,6 @@
 package com.parameta.api.web.controller;
 
+import com.parameta.api.client.EmployeeResponse;
 import com.parameta.api.dto.EmployeeDTO;
 import com.parameta.api.exception.ParametaAppException;
 import com.parameta.api.web.constants.EmployeeConstants;
@@ -47,8 +48,8 @@ public class EmployeeController implements Serializable {
     public ResponseEntity<?> createEmployee(
             @Valid @RequestBody @ApiParam(name = "employeeDTO", type = "EmployeeDTO", required = true) EmployeeDTO employeeDTO) {
         try {
-            iIntegrationBridgeService.createEmployee(employeeDTO);
-            return new ResponseEntity<>("Register OK", HttpStatus.OK);
+            EmployeeResponse response = iIntegrationBridgeService.createEmployee(employeeDTO);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (ParametaAppException e) {
             log.error("Error createEmployee {} ", e);
             ErrorMessage errorMessage = EmployeeConstants.extractErrorException(e, "Create Employee");

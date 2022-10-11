@@ -24,6 +24,8 @@
             <xsd:sequence>
                 <xsd:element name="resultCode" type="xsd:int"/>
                 <xsd:element name="resultMsg" type="xsd:string"/>
+                <xsd:element name="resultCompay" type="xsd:string"/>
+                <xsd:element name="resultBirthday" type="xsd:string"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

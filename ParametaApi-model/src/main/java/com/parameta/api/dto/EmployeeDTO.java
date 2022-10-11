@@ -31,12 +31,12 @@ public class EmployeeDTO {
     private String documentNumber;
 
 
-    @ApiModelProperty(value = "Date of birth", dataType = "String", example = "DD-MM-YYYY")
+    @ApiModelProperty(value = "Date of birth", dataType = "String", example = "YYYY-MM-DD")
     @NotNull(message = "LA fecha de nacimiento es obligatoria")
     private String dateOfBirth;
 
 
-    @ApiModelProperty(value = "Hiring date", dataType = "String", example = "DD-MM-YYYY")
+    @ApiModelProperty(value = "Hiring date", dataType = "String", example = "YYYY-MM-DD")
     @NotNull(message = "La fecha de contratación es obligatoria")
     private String hiringDate;
 
@@ -44,7 +44,7 @@ public class EmployeeDTO {
     @NotNull(message = "El cargo es obligatorio")
     private PositionRoleType positionRoleType;
 
-    @ApiModelProperty(value = "Salary", dataType = "Double", example = "4000")
+    @ApiModelProperty(value = "Salary", dataType = "Double", example = "1000")
     @NotNull(message = "El salario es obligatorio")
     private Double salary;
 

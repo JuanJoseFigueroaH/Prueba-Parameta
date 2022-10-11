@@ -12,7 +12,9 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.*;
 
 @Endpoint
 public class EmployeeEndpoint {
@@ -21,6 +23,8 @@ public class EmployeeEndpoint {
 
     @Autowired
     private IEmployeeService iEmployeeService;
+
+    private Period periodo;
 
     /**
      * Endopoint para registrar un empleado
@@ -43,8 +47,14 @@ public class EmployeeEndpoint {
             employeeDTO.setNames(request.getNames());
             employeeDTO.setSalary(request.getSalary());
             iEmployeeService.createEmployee(employeeDTO);
+
+            Period company = diffDate(request.getHiringDate());
+            Period birthDay = diffDate(request.getDateOfBirth());
+
             em.setResultCode(1);
-            em.setResultMsg("Se persistio el empleado correctamente");
+            em.setResultMsg("Se agrego el empleado correctamente");
+            em.setResultBirthday(birthDay.getYears()+" años, "+birthDay.getMonths()+" meses, "+birthDay.getDays()+ " dias.");
+            em.setResultCompany(company.getYears()+" años, "+company.getMonths()+" meses, "+company.getDays()+ " dias.");
         } catch (ParametaAppException e) {
             em.setResultCode(2);
             em.setResultMsg("Ocurrio un error persistiendo el empleado");
@@ -52,5 +62,10 @@ public class EmployeeEndpoint {
         return em;
     }
 
-
+    public Period diffDate(String date){
+        LocalDate myDate = LocalDate.parse(date);
+        LocalDate currentDate = LocalDate.now();
+        periodo = Period.between(myDate, currentDate);
+        return periodo;
+    }
 }
